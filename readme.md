@@ -31,6 +31,18 @@ and adapt your new `.env` file.
 > _name_ and signing _key_ as well.
 > It's a compromise between pure, reproducible approach and privacy 🤷‍♂️
 
+#### Secrets
+
+Copy folders containing secrets (`.ssh`, `.gnupg`, ...) to your home directory.
+In case of _gnupg_, you might need to delete (or better: backup) existing configuration files,
+as _home-manager_ will create symlinks using provided configuration.
+
+```shell
+mv gpg.conf gpg.cong.backup
+mv gpg-agent.conf gpg-agent.cong.backup
+
+```
+
 ### Init
 
 ```shell
@@ -57,7 +69,7 @@ nix flake update --flake ./mac
 Apply newest dependencies
 
 ```shell
-sudo darwin-rebuild switch --flake ./mac#spaceship --show-trace --impure
+sudo -E darwin-rebuild switch --flake ./mac#spaceship --show-trace --impure
 
 # ./mac#linux-builder | ./mac#chariot | ...
 ```
