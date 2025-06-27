@@ -57,7 +57,7 @@ nix flake update --flake ./mac
 Apply newest dependencies
 
 ```shell
-sudo darwin-rebuild switch --flake ./mac#spaceship --show-trace --impure
+sudo -E darwin-rebuild switch --flake ./mac#spaceship --show-trace --impure
 
 # ./mac#linux-builder | ./mac#chariot | ...
 ```
