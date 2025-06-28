@@ -1,7 +1,12 @@
 git-config:
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
-  home-programs = import ./home-programs.nix { pkgs = pkgs; };
+  home-programs = import ./home-programs.nix { inherit pkgs lib; };
 in
 {
   home.stateVersion = "24.05";

@@ -1,8 +1,13 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   home.stateVersion = "24.11";
 
-  home.packages = import ../common/home/home-packages.nix { pkgs = pkgs; } ++ [ ];
+  home.packages = import ../common/home/home-packages.nix { inherit pkgs lib; } ++ [ ];
 
   home.sessionVariables = {
     EDITOR = "vim";

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   home-manager.enable = true;
   direnv = {
@@ -26,6 +26,6 @@
         file = "p10k.zsh";
       }
     ];
-    initExtraBeforeCompInit = builtins.readFile ./zsh/zshrc;
+    initContent = lib.mkOrder 550 "export GPG_TTY=$TTY";
   };
 }

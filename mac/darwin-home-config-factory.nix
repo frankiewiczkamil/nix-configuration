@@ -3,11 +3,12 @@
   config,
   pkgs,
   pkgs-unstable,
+  lib,
   ...
 }:
 let
   home-programs = import ../common/home/home-programs.nix {
-    inherit pkgs pkgs-unstable;
+    inherit pkgs pkgs-unstable lib;
   };
 in
 {
