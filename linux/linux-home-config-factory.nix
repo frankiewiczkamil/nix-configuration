@@ -12,22 +12,21 @@ let
 in
 {
   home = {
-    packages = import ../common/home/home-packages.nix { inherit pkgs pkgs-unstable; } ++ [
-      # pkgs.pinentry_mac
-    ];
+    packages = import ../common/home/home-packages.nix { inherit pkgs pkgs-unstable; } ++ [ ];
     file = {
-      ".gnupg/gpg-agent.conf".text = ''
-        default-cache-ttl 86400 # 1 day
-        default-cache-ttl-ssh 86400
-        max-cache-ttl 604800 # 1 week
-        max-cache-ttl-ssh 604800
-      '';
       ".p10k.zsh".text = builtins.readFile ../common/home/zsh/p10k.zsh;
     };
     sessionVariables = {
       EDITOR = "vim";
     };
     stateVersion = state-version;
+  };
+
+  services.gpg-agent = {
+    enable = true;
+    enableSshSupport = true;
+    enableBashIntegration = true;
+    pinentry.package = pkgs.pinentry-gnome3;
   };
 
   programs = home-programs // {
