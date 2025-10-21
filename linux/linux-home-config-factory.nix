@@ -12,7 +12,10 @@ let
 in
 {
   home = {
-    packages = import ../common/home/home-packages.nix { inherit pkgs pkgs-unstable; } ++ [ ];
+    packages = import ../common/home/home-packages.nix { inherit pkgs pkgs-unstable; } ++ [
+      pkgs.vscode
+      pkgs.helix
+    ];
     file = {
       ".p10k.zsh".text = builtins.readFile ../common/home/zsh/p10k.zsh;
     };
