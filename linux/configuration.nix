@@ -72,7 +72,7 @@
       };
     };
   };
-
+  programs.zsh.enable = true;
   security.rtkit.enable = true;
 
   users.users.kpf = {
@@ -85,6 +85,7 @@
     packages = with pkgs; [
       #  thunderbird
     ];
+    shell = pkgs.zsh;
   };
 
   system.stateVersion = "25.05";
