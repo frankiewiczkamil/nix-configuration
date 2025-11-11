@@ -8,6 +8,7 @@
   pkgs.lazygit
   pkgs.nil
   pkgs.nixfmt-rfc-style
+  pkgs.tmux
   pkgs.zsh
   pkgs.zsh-powerlevel10k
 ]
