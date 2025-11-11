@@ -5,6 +5,7 @@
   pkgs.nix-direnv
   pkgs.nerd-fonts.fira-code
   pkgs.fzf
+  pkgs.lazygit
   pkgs.nil
   pkgs.nixfmt-rfc-style
   pkgs.zsh
