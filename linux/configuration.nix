@@ -12,6 +12,9 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelParams = [
+    "video=Virtual-1:5120x2880@60"
+  ];
   console.keyMap = "pl2";
 
   environment.systemPackages = with pkgs; [
