@@ -5,15 +5,17 @@
 }:
 {
   enable = true;
-  userName = name;
-  userEmail = email;
-  signing = {
-    key = signingKey;
-    signByDefault = true;
-  };
-  extraConfig = {
+  settings = {
+    user = {
+      inherit name;
+      inherit email;
+    };
     init = {
       defaultBranch = "main";
+    };
+    signing = {
+      key = signingKey;
+      signByDefault = true;
     };
   };
 }
