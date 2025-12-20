@@ -9,6 +9,10 @@
     enable = true;
     enableZshIntegration = true;
   };
+  zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
   zsh = {
     enable = true;
     enableCompletion = true;
