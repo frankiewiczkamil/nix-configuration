@@ -3,9 +3,13 @@
   pkgs-unstable.devenv
 
   pkgs.bat
+  pkgs.curlie
+  pkgs.delta
   pkgs.direnv
-  pkgs.git
   pkgs.fzf
+  pkgs.git
+  pkgs.htop
+  pkgs.helix
   pkgs.jq
   pkgs.lazygit
   pkgs.neofetch
@@ -18,6 +22,7 @@
   pkgs.tldr
   pkgs.tmux
   pkgs.vim
+  pkgs.zoxide
   pkgs.zsh
   pkgs.zsh-powerlevel10k
 ]
