@@ -3,13 +3,5 @@
   pkgs-unstable,
 }:
 [
-  pkgs.bat
-  pkgs.git
-  pkgs.jq
-  pkgs.neofetch
-  pkgs.nmap
-  pkgs.socat
-  pkgs.tldr
-  pkgs.vim
-  pkgs.zsh
+  # todo: add some clipboard manager for macos
 ]
