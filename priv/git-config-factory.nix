@@ -13,9 +13,9 @@
     init = {
       defaultBranch = "main";
     };
-    signing = {
-      key = signingKey;
-      signByDefault = true;
-    };
+  };
+  signing = {
+    key = signingKey;
+    signByDefault = true;
   };
 }
