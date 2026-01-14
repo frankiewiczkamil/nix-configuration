@@ -13,6 +13,31 @@
     enable = true;
     enableZshIntegration = true;
   };
+  tmux = {
+    enable = true;
+
+    terminal = "screen-256color";
+    baseIndex = 1;
+    keyMode = "vi";
+
+    plugins = with pkgs.tmuxPlugins; [
+      sensible
+      vim-tmux-navigator
+      resurrect
+      continuum
+      yank
+      catppuccin
+    ];
+
+    extraConfig = ''
+      set -g mouse on
+      set -g history-limit 50000
+
+      # resurrect / continuum
+      set -g @continuum-restore 'on'
+      set -g @resurrect-capture-pane-contents 'on'
+    '';
+  };
   zsh = {
     enable = true;
     enableCompletion = true;
