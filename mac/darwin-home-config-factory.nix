@@ -1,4 +1,8 @@
-{ git-config, state-version }:
+{
+  git-config,
+  state-version,
+  catppuccinHomeModule,
+}:
 {
   config,
   pkgs,
@@ -11,6 +15,7 @@ let
   };
 in
 {
+  imports = [ catppuccinHomeModule ];
   home = {
     packages = import ../common/home/home-packages.nix { inherit pkgs pkgs-unstable; } ++ [
       pkgs.pinentry_mac
@@ -29,6 +34,23 @@ in
       EDITOR = "vim";
     };
     stateVersion = state-version;
+  };
+
+  catppuccin = {
+    tmux = {
+
+      enable = true;
+      extraConfig = ''
+        set -g @catppuccin_status_modules_right "user directory host session"
+        set -g @catppuccin_window_number_position 'right'
+
+        set -g @catppuccin_window_default_fill 'number'
+        set -g @catppuccin_window_default_text '#W'
+
+        set -g @catppuccin_window_current_fill 'number'
+        set -g @catppuccin_window_current_text '#W'
+      '';
+    };
   };
 
   programs = home-programs // {
