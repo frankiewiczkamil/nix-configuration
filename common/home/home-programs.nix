@@ -19,6 +19,7 @@
     terminal = "screen-256color";
     baseIndex = 1;
     keyMode = "vi";
+    prefix = "C-Space";
     mouse = true;
     historyLimit = 50000;
 
