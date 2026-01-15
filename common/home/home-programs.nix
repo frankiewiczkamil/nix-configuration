@@ -29,7 +29,6 @@
       resurrect
       continuum
       yank
-      catppuccin
     ];
 
     extraConfig = ''

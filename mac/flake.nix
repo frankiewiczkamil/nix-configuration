@@ -10,6 +10,8 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    catppuccin.url = "github:catppuccin/nix/release-25.11";
+
   };
 
   outputs =
@@ -18,6 +20,7 @@
       home-manager,
       nixpkgs,
       nixpkgs-unstable,
+      catppuccin,
       ...
     }:
     let
@@ -37,6 +40,7 @@
         home-config-factory {
           inherit git-config;
           state-version = nix-version;
+          catppuccinHomeModule = catppuccin.homeModules.catppuccin;
         };
 
       config-factory =
