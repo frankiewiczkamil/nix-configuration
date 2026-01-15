@@ -19,6 +19,8 @@
     terminal = "screen-256color";
     baseIndex = 1;
     keyMode = "vi";
+    mouse = true;
+    historyLimit = 50000;
 
     plugins = with pkgs.tmuxPlugins; [
       sensible
@@ -30,10 +32,6 @@
     ];
 
     extraConfig = ''
-      set -g mouse on
-      set -g history-limit 50000
-
-      # resurrect / continuum
       set -g @continuum-restore 'on'
       set -g @resurrect-capture-pane-contents 'on'
     '';
