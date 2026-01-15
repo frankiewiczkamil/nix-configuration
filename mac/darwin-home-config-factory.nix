@@ -1,8 +1,4 @@
-{
-  git-config,
-  state-version,
-  catppuccinHomeModule,
-}:
+{ git-config, state-version }:
 {
   config,
   pkgs,
@@ -15,7 +11,6 @@ let
   };
 in
 {
-  imports = [ catppuccinHomeModule ];
   home = {
     packages = import ../common/home/home-packages.nix { inherit pkgs pkgs-unstable; } ++ [
       pkgs.pinentry_mac
@@ -34,16 +29,6 @@ in
       EDITOR = "vim";
     };
     stateVersion = state-version;
-  };
-
-  catppuccin = {
-    tmux = {
-
-      enable = true;
-      extraConfig = ''
-        set -g @catppuccin_window_status_style "rounded"
-      '';
-    };
   };
 
   programs = home-programs // {
