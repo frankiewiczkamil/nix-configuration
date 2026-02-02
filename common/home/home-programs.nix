@@ -75,6 +75,8 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     initExtra = ''
+      bindkey -v
+      export KEYTIMEOUT=1
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
     '';
     initExtraBeforeCompInit = builtins.readFile ./zsh/zshrc;
