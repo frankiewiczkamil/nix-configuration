@@ -83,6 +83,7 @@ in
           };
         };
         vim_mode = true;
+        buffer_font_fallbacks = [ "FiraCode Nerd Font Mono" ];
         ui_font_size = 15;
         buffer_font_size = 15;
         base_keymap = "JetBrains";
