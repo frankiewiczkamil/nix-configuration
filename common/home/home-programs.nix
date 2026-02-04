@@ -76,9 +76,21 @@
     syntaxHighlighting.enable = true;
     initExtra = ''
       bindkey -v
+
+      function zle-keymap-select {
+        if [[ $KEYMAP == vicmd ]]; then
+          echo -ne '\e[2 q'  # block
+        else
+          echo -ne '\e[6 q'  # beam
+        fi
+      }
+      zle -N zle-keymap-select
+      echo -ne '\e[6 q'
+
       export KEYTIMEOUT=1
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
     '';
+
     initExtraBeforeCompInit = builtins.readFile ./zsh/zshrc;
   };
 }
