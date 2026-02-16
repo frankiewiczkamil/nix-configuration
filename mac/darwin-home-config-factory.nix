@@ -23,7 +23,7 @@ in
         max-cache-ttl-ssh 604800
         pinentry-program ${pkgs.pinentry_mac}/bin/pinentry-mac
       '';
-      ".p10k.zsh".text = builtins.readFile ../common/home/zsh/p10k.zsh;
+      # ".p10k.zsh".text = builtins.readFile ../common/home/zsh/p10k.zsh;
     };
     sessionVariables = {
       EDITOR = "vim";

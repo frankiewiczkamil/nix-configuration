@@ -19,10 +19,9 @@
   pkgs.nixfmt-rfc-style
   pkgs.nmap
   pkgs.socat
+  pkgs.starship
   pkgs.tldr
   pkgs.tmux
   pkgs.vim
   pkgs.zoxide
-  pkgs.zsh
-  pkgs.zsh-powerlevel10k
 ]
