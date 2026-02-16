@@ -9,5 +9,5 @@
   };
   programs = import ../common/home/home-programs.nix { pkgs = pkgs; };
 
-  home.file.".p10k.zsh".text = builtins.readFile ../common/home/zsh/p10k.zsh;
+  # home.file.".p10k.zsh".text = builtins.readFile ../common/home/zsh/p10k.zsh;
 }

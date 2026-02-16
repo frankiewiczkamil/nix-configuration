@@ -69,13 +69,17 @@
       set -g @resurrect-capture-pane-contents 'on'
     '';
   };
+  starship = {
+    enable = true;
+  };
   zsh = {
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     initExtra = builtins.readFile ./zsh/vi-mode.zsh + ''
-      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+      bindkey -v
+      export KEYTIMEOUT=1
     '';
 
     initExtraBeforeCompInit = builtins.readFile ./zsh/zshrc;
