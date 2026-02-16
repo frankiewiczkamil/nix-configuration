@@ -29,5 +29,5 @@ in
     };
   };
 
-  home.file.".p10k.zsh".text = builtins.readFile ./zsh/p10k.zsh;
+  # home.file.".p10k.zsh".text = builtins.readFile ./zsh/p10k.zsh;
 }
