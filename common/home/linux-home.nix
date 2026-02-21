@@ -4,7 +4,7 @@ let
   home-programs = import ./home-programs.nix { pkgs = pkgs; };
 in
 {
-  home.stateVersion = "24.05";
+  home.stateVersion = "25.11";
 
   home.packages = import ./home-packages.nix { pkgs = pkgs; } ++ [ pkgs.pinentry-curses ];
 
