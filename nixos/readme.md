@@ -38,7 +38,7 @@ git clone https://github.com/frankiewiczkamil/nix-config.git
 ```shell
 
 set -a && source .env && set +a
-sudo -E nixos-rebuild switch --flake ./linux#vm --impure
+sudo -E nixos-rebuild switch --flake ./nixos#vm --impure
 ```
 
 ### Update packages
@@ -46,11 +46,11 @@ sudo -E nixos-rebuild switch --flake ./linux#vm --impure
 Refresh available dependencies:
 
 ```shell
-nix flake update --flake ./linux
+nix flake update --flake ./nixos
 ```
 
 Apply newest dependencies
 
 ```shell
-sudo -E nixos-rebuild switch --flake ./linux#vm --impure
+sudo -E nixos-rebuild switch --flake ./nixos#vm --impure
 ```
