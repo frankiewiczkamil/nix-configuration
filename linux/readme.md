@@ -38,10 +38,7 @@ git clone https://github.com/frankiewiczkamil/nix-config.git
 ```shell
 
 set -a && source .env && set +a
-
-sudo -E nix --extra-experimental-features "nix-command flakes" run nix-darwin -- switch --flake ./linux#vm --show-trace --args env env.nix
-
-# ./linux#chariot | ...
+sudo -E nixos-rebuild switch --flake ./linux#vm --impure
 ```
 
 ### Update packages
@@ -55,7 +52,5 @@ nix flake update --flake ./linux
 Apply newest dependencies
 
 ```shell
-sudo -E darwin-rebuild switch --flake ./linux#vm --show-trace --impure
-
-# ./linux#linux-builder | ./linux#chariot | ...
+sudo -E nixos-rebuild switch --flake ./linux#vm --impure
 ```
