@@ -77,11 +77,6 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    initExtra = builtins.readFile ./zsh/vi-mode.zsh + ''
-      bindkey -v
-      export KEYTIMEOUT=1
-    '';
-
-    initExtraBeforeCompInit = builtins.readFile ./zsh/zshrc;
+    initContent = builtins.readFile ./zsh/zshrc;
   };
 }
