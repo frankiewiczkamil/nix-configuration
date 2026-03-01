@@ -17,7 +17,7 @@ in
       pkgs.helix
     ];
     sessionVariables = {
-      EDITOR = "vim";
+      EDITOR = "nvim";
     };
     stateVersion = state-version;
   };

@@ -26,7 +26,7 @@ in
       # ".p10k.zsh".text = builtins.readFile ../common/home/zsh/p10k.zsh;
     };
     sessionVariables = {
-      EDITOR = "vim";
+      EDITOR = "nvim";
     };
     stateVersion = state-version;
   };
