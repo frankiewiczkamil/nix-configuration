@@ -5,6 +5,13 @@
 }:
 {
   enable = true;
+  ignores = [
+    "*.log"
+    ".direnv"
+    "node_modules"
+    ".DS_Store"
+  ];
+
   settings = {
     user = {
       inherit name;
