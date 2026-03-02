@@ -1,4 +1,7 @@
 { pkgs, ... }:
+let
+  tmux-config = import ./programs/tmux.nix { inherit pkgs; };
+in
 {
   home-manager.enable = true;
   direnv = {
@@ -38,37 +41,7 @@
     enable = true;
     enableZshIntegration = true;
   };
-  tmux = {
-    enable = true;
-
-    terminal = "screen-256color";
-    baseIndex = 1;
-    keyMode = "vi";
-    prefix = "C-Space";
-    mouse = true;
-    historyLimit = 50000;
-
-    plugins = with pkgs.tmuxPlugins; [
-      sensible
-      vim-tmux-navigator
-      resurrect
-      continuum
-      yank
-      catppuccin
-    ];
-
-    extraConfig = ''
-      set -g status-position 'top'
-      set -g status-right-length 100
-      set -g status-left-length 100
-      set -g status-left ""
-      set -g status-right "#{E:@catppuccin_status_application}"
-      set -ag status-right "#{E:@catppuccin_status_session}"
-
-      set -g @continuum-restore 'on'
-      set -g @resurrect-capture-pane-contents 'on'
-    '';
-  };
+  tmux = tmux-config;
   starship = {
     enable = true;
   };
