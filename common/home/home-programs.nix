@@ -22,11 +22,5 @@ in
   starship = {
     enable = true;
   };
-  zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-    initContent = builtins.readFile ./zsh/zshrc;
-  };
+  zsh = import ./programs/zsh.nix;
 }
