@@ -12,4 +12,5 @@
   pkgs.tldr
   pkgs.vim
   pkgs.zsh
+  pkgs.kanata
 ]

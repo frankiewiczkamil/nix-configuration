@@ -75,9 +75,21 @@
       };
     };
     spice-vdagentd.enable = true;
+    kanata = {
+      enable = true;
+      keyboards = {
+        vm-keyboard = {
+          extraDefCfg = "process-unmapped-keys yes";
+          devices = [
+            "/dev/input/by-path/pci-0000:00:04.0-usb-0:3:1.0-event-kbd"
+          ];
+          config = builtins.readFile ./kanata-vm-keyboard.kdb;
+        };
+      };
+    };
   };
-  programs.zsh.enable = true;
   security.rtkit.enable = true;
+  programs.zsh.enable = true;
 
   users.users.kpf = {
     isNormalUser = true;

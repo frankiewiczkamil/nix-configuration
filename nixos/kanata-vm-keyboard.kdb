@@ -1,0 +1,61 @@
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+  left down up right
+)
+
+(defalias
+  ctrl-c (multi lctl c)
+  ctrl-v (multi lctl v)
+  ctrl-x (multi lctl x)
+  ctrl-a (multi lctl a)
+  ctrl-z (multi lctl z)
+  ctrl-y (multi lctl y)
+  ctrl-t (multi lctl t)
+  ctrl-w (multi lctl w)
+  ctrl-q (multi lctl q)
+  ctrl-r (multi lctl r)
+  ctrl-f (multi lctl f)
+  ctrl-s (multi lctl s)
+  ctrl-p (multi lctl p)
+  ctrl-n (multi lctl n)
+  ctrl-o (multi lctl o)
+  ctrl-l (multi lctl l)
+  ctrl-h (multi lctl h)
+  ctrl-d (multi lctl d)
+  ctrl-g (multi lctl g)
+  ctrl-b (multi lctl b)
+  ctrl-e (multi lctl e)
+  ctrl-i (multi lctl i)
+  ctrl-u (multi lctl u)
+  ctrl-k (multi lctl k)
+  ctrl-j (multi lctl j)
+  ctrl-m (multi lctl m)
+  ctrl-spc (multi lctl spc)
+  ctrl-ret (multi lctl ret)
+  ctrl-left (multi lctl left)
+  ctrl-down (multi lctl down)
+  ctrl-up (multi lctl up)
+  ctrl-right (multi lctl right)
+)
+
+(deflayer base
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    (tap-hold 200 200 lmet (layer-while-held meta))    _              _              _    _    _
+  _    _    _    _
+)
+
+(deflayer meta
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    @ctrl-q    @ctrl-w    @ctrl-e    @ctrl-r    @ctrl-t    @ctrl-y    @ctrl-u    @ctrl-i    @ctrl-o    @ctrl-p    _    _    _
+  _    @ctrl-a    @ctrl-s    @ctrl-d    @ctrl-f    @ctrl-g    @ctrl-h    @ctrl-j    @ctrl-k    @ctrl-l    _    _    @ctrl-ret
+  _    @ctrl-z    @ctrl-x    @ctrl-c    @ctrl-v    @ctrl-b    @ctrl-n    @ctrl-m    _    _    _    _
+  _    _    _              @ctrl-spc              _    _    _
+  @ctrl-left    @ctrl-down    @ctrl-up    @ctrl-right
+)
