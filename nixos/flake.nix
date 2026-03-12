@@ -10,6 +10,10 @@
       url = "github:nix-community/nixvim/nixos-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -19,11 +23,15 @@
       nixpkgs,
       nixpkgs-unstable,
       nixvim,
+      nix-index-database,
       ...
     }:
     let
       nix-version = "25.11"; # can't use this variable with `rec` keyword inside inputs object, for other args, unfortunately
-      home-manager-module-factory = (import ./linux-home-manager-module-factory.nix) nixvim.homeModules.nixvim;
+      home-manager-module-factory = (import ./linux-home-manager-module-factory.nix) {
+        nixvim = nixvim.homeModules.nixvim;
+        nix-index = nix-index-database.homeModules.default;
+      };
       home-config-factory = import ./linux-home-config-factory.nix;
       git-config-factory = import ../priv/git-config-factory.nix;
       nixos-configuration = import ./configuration.nix;
