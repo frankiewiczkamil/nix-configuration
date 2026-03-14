@@ -18,6 +18,10 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -28,6 +32,7 @@
       nixpkgs-unstable,
       nixvim,
       nix-index-database,
+      sops-nix,
       ...
     }:
     let
@@ -67,6 +72,7 @@
             darwin-module
             home-manager.darwinModules.home-manager
             home-manager-module
+            sops-nix.darwinModules.sops
           ];
           specialArgs = { inherit pkgs-unstable; };
         };
