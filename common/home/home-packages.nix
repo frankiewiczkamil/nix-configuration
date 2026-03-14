@@ -1,7 +1,7 @@
 { pkgs, pkgs-unstable }:
 [
   pkgs-unstable.devenv
-
+  pkgs.age
   pkgs.bat
   pkgs.curlie
   pkgs.delta
