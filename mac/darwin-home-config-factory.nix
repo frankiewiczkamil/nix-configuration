@@ -9,7 +9,7 @@ let
   home-programs = import ../common/home/home-programs.nix {
     inherit pkgs pkgs-unstable;
   };
-  zed-config = import ../common/home/programs/zed.nix;
+  zed-config = import ../common/home/programs/zed.nix pkgs-unstable;
 in
 {
   home = {
@@ -24,7 +24,6 @@ in
         max-cache-ttl-ssh 604800
         pinentry-program ${pkgs.pinentry_mac}/bin/pinentry-mac
       '';
-      # ".p10k.zsh".text = builtins.readFile ../common/home/zsh/p10k.zsh;
     };
     sessionVariables = {
       EDITOR = "nvim";
