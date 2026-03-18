@@ -37,4 +37,5 @@ in
     gpg.enable = true;
     zed-editor = zed-config;
   };
+  launchd.agents.keyboard-mapping = import ./keyboard-mapping.nix;
 }
