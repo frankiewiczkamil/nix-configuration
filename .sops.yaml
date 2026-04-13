@@ -1,0 +1,10 @@
+keys:
+  # - &c7s todo
+  - &kpf age1p7pw3fw6fqe649unww7rm368qx3q9ptuz0lflmququ343px9lumqlqxnpt
+creation_rules:
+  - path_regex: protected/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      # - pgp:
+      #     - *c7s
+      - age:
+          - *kpf

@@ -22,6 +22,9 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    protected = {
+      url = "path:../protected";
+    };
   };
 
   outputs =
@@ -33,28 +36,25 @@
       nixvim,
       nix-index-database,
       sops-nix,
+      protected,
       ...
     }:
     let
       nix-version = "25.11"; # can't use this variable with `rec` keyword inside inputs object, for other args, unfortunately
       darwin-module-factory = import ./darwin-module-factory.nix;
       home-manager-module-factory = (import ./darwin-home-manager-module-factory.nix) {
+        inherit sops-nix;
         nixvim = nixvim.homeModules.nixvim;
         nix-index = nix-index-database.homeModules.default;
       };
       home-config-factory = import ./darwin-home-config-factory.nix;
       with-linux-builder = import ./linux-builder.nix;
-      git-config-factory = import ../priv/git-config-factory.nix;
-
-      git-metadata-provider = import ../priv/git-metadata-provider.nix;
-
-      git-config = git-config-factory (git-metadata-provider { });
 
       create-home-config =
-        { git-config }:
+        { secret-file }:
         home-config-factory {
-          inherit git-config;
           state-version = nix-version;
+          protected-path = "${protected.outPath}/${secret-file}";
         };
 
       config-factory =
@@ -87,9 +87,7 @@
           };
           home-manager-module = home-manager-module-factory {
             user-name = "kamil";
-            home-config = create-home-config {
-              inherit git-config;
-            };
+            home-config = create-home-config { secret-file = "kpf.yaml"; };
           };
         };
         chariot = config-factory rec {
@@ -100,9 +98,7 @@
           };
           home-manager-module = home-manager-module-factory {
             user-name = "kamil";
-            home-config = create-home-config {
-              inherit git-config;
-            };
+            home-config = create-home-config { };
           };
         };
         linux-builder = config-factory rec {
@@ -113,9 +109,7 @@
           });
           home-manager-module = home-manager-module-factory {
             user-name = "kamil";
-            home-config = create-home-config {
-              inherit git-config;
-            };
+            home-config = create-home-config { secret-file = "kpf.yaml"; };
           };
         };
         c7s = config-factory rec {
@@ -126,9 +120,7 @@
           };
           home-manager-module = home-manager-module-factory {
             user-name = "kamilfrankiewicz";
-            home-config = create-home-config {
-              inherit git-config;
-            };
+            home-config = create-home-config { };
           };
         };
         p7t-vm = config-factory rec {
@@ -139,9 +131,7 @@
           };
           home-manager-module = home-manager-module-factory {
             user-name = "kamil.frankiewicz";
-            home-config = create-home-config {
-              inherit git-config;
-            };
+            home-config = create-home-config { };
           };
         };
       };

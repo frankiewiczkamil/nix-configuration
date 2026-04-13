@@ -208,6 +208,18 @@
         "type": "github"
       }
     },
+    "protected": {
+      "flake": false,
+      "locked": {
+        "path": "../protected",
+        "type": "path"
+      },
+      "original": {
+        "path": "../protected",
+        "type": "path"
+      },
+      "parent": []
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
@@ -216,6 +228,7 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim",
+        "protected": "protected",
         "sops-nix": "sops-nix"
       }
     },
@@ -226,11 +239,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1773096132,
-        "narHash": "sha256-M3zEnq9OElB7zqc+mjgPlByPm1O5t2fbUrH3t/Hm5Ag=",
+        "lastModified": 1774303811,
+        "narHash": "sha256-fhG4JAcLgjKwt+XHbjs8brpWnyKUfU4LikLm3s0Q/ic=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "d1ff3b1034d5bab5d7d8086a7803c5a5968cd784",
+        "rev": "614e256310e0a4f8a9ccae3fa80c11844fba7042",
         "type": "github"
       },
       "original": {

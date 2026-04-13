@@ -1,4 +1,4 @@
-{ git-config, state-version }:
+{ state-version, protected-path }:
 {
   config,
   pkgs,
@@ -24,6 +24,8 @@ in
         max-cache-ttl-ssh 604800
         pinentry-program ${pkgs.pinentry_mac}/bin/pinentry-mac
       '';
+      ".gitconfig".source = config.lib.file.mkOutOfStoreSymlink config.sops.templates."gitconfig".path;
+
     };
     sessionVariables = {
       EDITOR = "nvim";
@@ -31,8 +33,39 @@ in
     stateVersion = state-version;
   };
 
+  sops = {
+    age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+    defaultSopsFile = protected-path;
+    defaultSopsFormat = "yaml";
+    secrets = {
+      "gitconfig/git_name" = { };
+      "gitconfig/git_email" = { };
+      "gitconfig/gpg_signing_key" = { };
+    };
+    templates."gitconfig".content = ''
+      [user]
+        name = ${config.sops.placeholder."gitconfig/git_name"}
+        email = ${config.sops.placeholder."gitconfig/git_email"}
+        signingkey = ${config.sops.placeholder."gitconfig/gpg_signing_key"}
+      [commit]
+        gpgsign = true
+      [init]
+        defaultBranch = main
+      [url "ssh://git@github.com/"]
+        insteadOf = https://github.com/
+    '';
+  };
+
   programs = home-programs // {
-    git = git-config;
+    git = {
+      enable = true;
+      ignores = [
+        "*.log"
+        ".direnv"
+        "node_modules"
+        ".DS_Store"
+      ];
+    };
     gpg.enable = true;
     zed-editor = zed-config;
   };
