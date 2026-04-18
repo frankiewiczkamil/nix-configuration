@@ -120,7 +120,7 @@
           };
           home-manager-module = home-manager-module-factory {
             user-name = "kamilfrankiewicz";
-            home-config = create-home-config { };
+            home-config = create-home-config { secret-file = "c7s.yaml"; };
           };
         };
         p7t-vm = config-factory rec {
