@@ -12,7 +12,15 @@ in
     enable = true;
     enableZshIntegration = true;
   };
-
+  git = {
+    enable = true;
+    ignores = [
+      "*.log"
+      ".direnv"
+      "node_modules"
+      ".DS_Store"
+    ];
+  };
   nixvim = import ./programs/nixvim.nix;
   zoxide = {
     enable = true;

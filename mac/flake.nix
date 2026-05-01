@@ -40,6 +40,7 @@
       ...
     }:
     let
+      merge = nixpkgs.lib.recursiveUpdate;
       nix-version = "25.11"; # can't use this variable with `rec` keyword inside inputs object, for other args, unfortunately
       darwin-module-factory = import ./darwin-module-factory.nix;
       home-manager-module-factory = (import ./darwin-home-manager-module-factory.nix) {
@@ -49,13 +50,12 @@
       };
       home-config-factory = import ./darwin-home-config-factory.nix;
       with-linux-builder = import ./linux-builder.nix;
+      with-git-sops-factory = (import ../common/home/programs/with-git-sops.nix) merge;
+      with-state-ver = (import ../common/home/with-state-version.nix) merge nix-version;
 
-      create-home-config =
-        { secret-file }:
-        home-config-factory {
-          state-version = nix-version;
-          protected-path = "${protected.outPath}/${secret-file}";
-        };
+      home-config = with-state-ver home-config-factory;
+      create-home-config-with-git-sops =
+        secret-file-name: (with-git-sops-factory "${protected.outPath}/${secret-file-name}") home-config;
 
       config-factory =
         {
@@ -87,7 +87,7 @@
           };
           home-manager-module = home-manager-module-factory {
             user-name = "kamil";
-            home-config = create-home-config { secret-file = "kpf.yaml"; };
+            home-config = create-home-config-with-git-sops "kpf.yaml";
           };
         };
         chariot = config-factory rec {
@@ -98,7 +98,7 @@
           };
           home-manager-module = home-manager-module-factory {
             user-name = "kamil";
-            home-config = create-home-config { };
+            home-config = home-config;
           };
         };
         linux-builder = config-factory rec {
@@ -109,7 +109,7 @@
           });
           home-manager-module = home-manager-module-factory {
             user-name = "kamil";
-            home-config = create-home-config { secret-file = "kpf.yaml"; };
+            home-config = create-home-config-with-git-sops { secret-file = "kpf.yaml"; };
           };
         };
         c7s = config-factory rec {
@@ -120,7 +120,7 @@
           };
           home-manager-module = home-manager-module-factory {
             user-name = "kamilfrankiewicz";
-            home-config = create-home-config { secret-file = "c7s.yaml"; };
+            home-config = create-home-config-with-git-sops { secret-file = "c7s.yaml"; };
           };
         };
         p7t-vm = config-factory rec {
@@ -131,7 +131,7 @@
           };
           home-manager-module = home-manager-module-factory {
             user-name = "kamil.frankiewicz";
-            home-config = create-home-config { };
+            home-config = home-config;
           };
         };
       };
