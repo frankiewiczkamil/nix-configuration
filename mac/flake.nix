@@ -51,11 +51,13 @@
       home-config-factory = import ./darwin-home-config-factory.nix;
       with-linux-builder = import ./linux-builder.nix;
       with-git-sops-factory = (import ../common/home/programs/with-git-sops.nix) merge;
+      with-git-plain-factory = (import ../common/home/programs/with-git-plain.nix) merge;
       with-state-ver = (import ../common/home/with-state-version.nix) merge nix-version;
 
       home-config = with-state-ver home-config-factory;
       create-home-config-with-git-sops =
         secret-file-name: (with-git-sops-factory "${protected.outPath}/${secret-file-name}") home-config;
+      create-home-config-with-git-plain = with-git-plain-factory home-config;
 
       config-factory =
         {
@@ -132,6 +134,24 @@
           home-manager-module = home-manager-module-factory {
             user-name = "kamil.frankiewicz";
             home-config = home-config;
+          };
+        };
+        example = config-factory rec {
+          system = "aarch64-darwin";
+          darwin-module = darwin-module-factory {
+            platform = system;
+            hostname = "spaceship";
+          };
+          home-manager-module = home-manager-module-factory {
+            user-name = "kamil";
+            home-config = create-home-config-with-git-plain {
+              settings = {
+                user = {
+                  name = "John Doe";
+                  email = "John [at] Doe [dot] xyz";
+                };
+              };
+            };
           };
         };
       };
