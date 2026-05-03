@@ -14,6 +14,14 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    protected = {
+      url = "path:../protected";
+      flake = false;
+    };
   };
 
   outputs =
@@ -24,28 +32,25 @@
       nixpkgs-unstable,
       nixvim,
       nix-index-database,
+      sops-nix,
+      protected,
       ...
     }:
     let
+      merge = nixpkgs.lib.recursiveUpdate;
       nix-version = "25.11"; # can't use this variable with `rec` keyword inside inputs object, for other args, unfortunately
       home-manager-module-factory = (import ./linux-home-manager-module-factory.nix) {
         nixvim = nixvim.homeModules.nixvim;
         nix-index = nix-index-database.homeModules.default;
+        inherit sops-nix;
       };
       home-config-factory = import ./linux-home-config-factory.nix;
-      git-config-factory = import ../priv/git-config-factory.nix;
       nixos-configuration = import ./configuration.nix;
-
-      git-metadata-provider = import ../priv/git-metadata-provider.nix;
-
-      git-config = git-config-factory (git-metadata-provider { });
-
-      create-home-config =
-        { git-config }:
-        home-config-factory {
-          inherit git-config;
-          state-version = nix-version;
-        };
+      with-git-sops-factory = (import ../common/home/programs/with-git-sops.nix) merge;
+      with-state-ver = (import ../common/home/with-state-version.nix) merge nix-version;
+      home-config = with-state-ver home-config-factory;
+      create-home-config-with-git-sops =
+        secret-file-name: (with-git-sops-factory "${protected.outPath}/${secret-file-name}") home-config;
 
       config-factory =
         {
@@ -72,9 +77,7 @@
 
           home-manager-module = home-manager-module-factory {
             user-name = "kpf";
-            home-config = create-home-config {
-              inherit git-config;
-            };
+            home-config = create-home-config-with-git-sops "kpf.yaml";
           };
         };
 

@@ -109,7 +109,7 @@
           });
           home-manager-module = home-manager-module-factory {
             user-name = "kamil";
-            home-config = create-home-config-with-git-sops { secret-file = "kpf.yaml"; };
+            home-config = create-home-config-with-git-sops "kpf.yaml";
           };
         };
         c7s = config-factory rec {
@@ -120,7 +120,7 @@
           };
           home-manager-module = home-manager-module-factory {
             user-name = "kamilfrankiewicz";
-            home-config = create-home-config-with-git-sops { secret-file = "c7s.yaml"; };
+            home-config = create-home-config-with-git-sops "c7s.yaml";
           };
         };
         p7t-vm = config-factory rec {

@@ -1,4 +1,3 @@
-{ git-config, state-version }:
 {
   config,
   pkgs,
@@ -19,7 +18,6 @@ in
     sessionVariables = {
       EDITOR = "nvim";
     };
-    stateVersion = state-version;
   };
 
   services.gpg-agent = {
@@ -30,7 +28,6 @@ in
   };
 
   programs = home-programs // {
-    git = git-config;
     gpg.enable = true;
   };
 }
