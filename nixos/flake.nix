@@ -48,7 +48,10 @@
       nixos-configuration = import ./configuration.nix;
       with-git-sops-factory = (import ../common/home/programs/with-git-sops.nix) merge;
       with-state-ver = (import ../common/home/with-state-version.nix) merge nix-version;
+      with-git-plain-factory = (import ../common/home/programs/with-git-plain.nix) merge;
+
       home-config = with-state-ver home-config-factory;
+      create-home-config-with-git = with-git-plain-factory home-config;
       create-home-config-with-git-sops =
         secret-file-name: (with-git-sops-factory "${protected.outPath}/${secret-file-name}") home-config;
 
@@ -78,6 +81,22 @@
           home-manager-module = home-manager-module-factory {
             user-name = "kpf";
             home-config = create-home-config-with-git-sops "kpf.yaml";
+          };
+        };
+
+        example = config-factory rec {
+          system = "aarch64-linux";
+
+          home-manager-module = home-manager-module-factory {
+            user-name = "kpf";
+            home-config = create-home-config-with-git {
+              settings = {
+                user = {
+                  name = "John Doe";
+                  email = "John [at] Doe [dot] xyz";
+                };
+              };
+            };
           };
         };
 
