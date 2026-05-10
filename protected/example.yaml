@@ -1,0 +1,4 @@
+gitconfig:
+  git_name: "John Doe"
+  git_email: ""
+  gpg_signing_key: ""

@@ -1,0 +1,11 @@
+keys:
+  - &c7s age1wz4fjej3f9wl5atfmvw6h6pyjzj65098cxj9prhm4z04hmty0awqmuucsr
+  - &kpf age1p7pw3fw6fqe649unww7rm368qx3q9ptuz0lflmququ343px9lumqlqxnpt
+creation_rules:
+  - path_regex: protected/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      # - pgp:
+      #     - *c7s
+      - age:
+          - *kpf
+          - *c7s

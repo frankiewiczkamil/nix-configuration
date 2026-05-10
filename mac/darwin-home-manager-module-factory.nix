@@ -1,7 +1,11 @@
-{ nixvim, nix-index }:
+{
+  nixvim,
+  nix-index,
+  sops-nix,
+}:
 { user-name, home-config }:
 {
-  users.users.${user-name}.home = "/Users/${user-name}";
+  users.users.${user-name}.home = /Users/${user-name};
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -11,6 +15,7 @@
         nixvim
         nix-index
         home-config
+        sops-nix.homeManagerModules.sops
       ];
     };
   };
