@@ -24,6 +24,7 @@
     };
     protected = {
       url = "path:../protected";
+      flake = false;
     };
   };
 
