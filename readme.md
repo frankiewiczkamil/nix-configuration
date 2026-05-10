@@ -107,5 +107,17 @@ The key can be provided in three ways:
   
 All the limitations and other details are described [here](https://github.com/Mic92/sops-nix).
 
+## Cleaning
+
+```shell
+# only orphaned packages
+nix-collect-garbage
+
+# all old generations
+nix-collect-garbage --delete-old
+
+# packages included in generations older than 30 days
+nix-collect-garbage --delete-older-than 30d
+```
 
 
