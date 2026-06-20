@@ -6,7 +6,6 @@
   pkgs.bat
   pkgs.git
   pkgs.jq
-  pkgs.neofetch
   pkgs.nmap
   pkgs.socat
   pkgs.tldr

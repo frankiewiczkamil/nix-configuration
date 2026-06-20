@@ -12,7 +12,6 @@
   pkgs.helix
   pkgs.jq
   pkgs.lazygit
-  pkgs.neofetch
   pkgs.nerd-fonts.fira-code
   pkgs.nil
   pkgs.nix-direnv
