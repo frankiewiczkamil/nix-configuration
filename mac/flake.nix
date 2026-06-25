@@ -60,9 +60,25 @@
         secret-file-name: (with-git-sops-factory "${protected.outPath}/${secret-file-name}") home-config;
       create-home-config-with-git-plain = with-git-plain-factory home-config;
 
+      brew-module-factory =
+        user:
+        ({ ... }: {
+          system.primaryUser = user;
+          homebrew = {
+            enable = true;
+            onActivation.cleanup = "none";
+            onActivation.autoUpdate = false;
+            onActivation.upgrade = false;
+
+            casks = [ ];
+          };
+
+        });
+
       config-factory =
         {
           home-manager-module,
+          brew-module,
           darwin-module,
           system,
         }:
@@ -75,6 +91,7 @@
             darwin-module
             home-manager.darwinModules.home-manager
             home-manager-module
+            brew-module
             sops-nix.darwinModules.sops
           ];
           specialArgs = { inherit pkgs-unstable; };
@@ -92,6 +109,7 @@
             user-name = "kamil";
             home-config = create-home-config-with-git-sops "kpf.yaml";
           };
+          brew-module = brew-module-factory "kamil";
         };
         chariot = config-factory rec {
           system = "x86_64-darwin";
@@ -103,6 +121,7 @@
             user-name = "kamil";
             home-config = home-config;
           };
+          brew-module = brew-module-factory "kamil";
         };
         linux-builder = config-factory rec {
           system = "aarch64-darwin";
@@ -114,6 +133,7 @@
             user-name = "kamil";
             home-config = create-home-config-with-git-sops "kpf.yaml";
           };
+          brew-module = brew-module-factory "kamil";
         };
         c7s = config-factory rec {
           system = "aarch64-darwin";
@@ -125,6 +145,7 @@
             user-name = "kamilfrankiewicz";
             home-config = create-home-config-with-git-sops "c7s.yaml";
           };
+          brew-module = brew-module-factory "kamilfrankiewicz";
         };
         p7t-vm = config-factory rec {
           system = "aarch64-darwin";
@@ -136,6 +157,7 @@
             user-name = "kamil.frankiewicz";
             home-config = home-config;
           };
+          brew-module = brew-module-factory "kamil.frankiewicz";
         };
         example = config-factory rec {
           system = "aarch64-darwin";
@@ -154,6 +176,7 @@
               };
             };
           };
+          brew-module = brew-module-factory "kamil";
         };
       };
     };
