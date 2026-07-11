@@ -85,7 +85,6 @@
         spaceship = config-factory rec {
           system = "aarch64-darwin";
           darwin-module = darwin-module-factory {
-            platform = system;
             hostname = "spaceship";
           };
           home-manager-module = home-manager-module-factory {
@@ -96,7 +95,6 @@
         chariot = config-factory rec {
           system = "x86_64-darwin";
           darwin-module = darwin-module-factory {
-            platform = system;
             hostname = "chariot";
           };
           home-manager-module = home-manager-module-factory {
@@ -107,7 +105,6 @@
         linux-builder = config-factory rec {
           system = "aarch64-darwin";
           darwin-module = with-linux-builder (darwin-module-factory {
-            platform = system;
             hostname = "linux-builder";
           });
           home-manager-module = home-manager-module-factory {
@@ -118,7 +115,6 @@
         c7s = config-factory rec {
           system = "aarch64-darwin";
           darwin-module = darwin-module-factory {
-            platform = system;
             hostname = "c7s";
           };
           home-manager-module = home-manager-module-factory {
@@ -129,7 +125,6 @@
         p7t-vm = config-factory rec {
           system = "aarch64-darwin";
           darwin-module = darwin-module-factory {
-            platform = system;
             hostname = "p7t-vm";
           };
           home-manager-module = home-manager-module-factory {
@@ -140,7 +135,6 @@
         example = config-factory rec {
           system = "aarch64-darwin";
           darwin-module = darwin-module-factory {
-            platform = system;
             hostname = "spaceship";
           };
           home-manager-module = home-manager-module-factory {
