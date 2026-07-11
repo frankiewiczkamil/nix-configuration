@@ -1,4 +1,7 @@
-{ hostname }:
+{
+  hostname,
+  profile-packages-factory ? { pkgs, pkgs-unstable }: [ ],
+}:
 {
   config,
   pkgs,
@@ -8,7 +11,9 @@
 }:
 
 {
-  environment.systemPackages = import ./darwin-packages.nix { inherit pkgs pkgs-unstable; };
+  environment.systemPackages =
+    import ./darwin-packages.nix { inherit pkgs pkgs-unstable; }
+    ++ profile-packages-factory { inherit pkgs pkgs-unstable; };
   home-manager.extraSpecialArgs = { inherit pkgs-unstable; };
   nix.settings.experimental-features = "nix-command flakes";
   networking.hostName = hostname;
