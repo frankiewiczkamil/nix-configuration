@@ -93,6 +93,9 @@
           system = "aarch64-darwin";
           darwin-module = darwin-module-factory {
             hostname = "spaceship";
+            profile-packages-factory = { pkgs-unstable, ... }: [
+              pkgs-unstable.docker-sbx
+            ];
           };
           home-manager-module = home-manager-module-factory {
             user-name = "kamil";
@@ -123,6 +126,9 @@
           system = "aarch64-darwin";
           darwin-module = darwin-module-factory {
             hostname = "c7s";
+            profile-packages-factory = { pkgs-unstable, ... }: [
+              pkgs-unstable.docker-sbx
+            ];
           };
           home-manager-module = home-manager-module-factory {
             user-name = "kamilfrankiewicz";
