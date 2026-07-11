@@ -22,6 +22,7 @@
   pkgs.starship
   pkgs.tldr
   pkgs.tmux
+  pkgs.tree
   pkgs.vim
   pkgs.zoxide
 ]
