@@ -93,7 +93,8 @@
           system = "aarch64-darwin";
           darwin-module = darwin-module-factory {
             hostname = "spaceship";
-            profile-packages-factory = { pkgs-unstable, ... }: [
+            profile-packages-factory = { pkgs, pkgs-unstable, ... }: [
+              pkgs.gh
               pkgs-unstable.docker-sbx
             ];
           };
@@ -126,7 +127,8 @@
           system = "aarch64-darwin";
           darwin-module = darwin-module-factory {
             hostname = "c7s";
-            profile-packages-factory = { pkgs-unstable, ... }: [
+            profile-packages-factory = { pkgs, pkgs-unstable, ... }: [
+              pkgs.gh
               pkgs-unstable.docker-sbx
             ];
           };

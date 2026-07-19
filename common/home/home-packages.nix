@@ -7,7 +7,6 @@
   pkgs.delta
   pkgs.direnv
   pkgs.fzf
-  pkgs.gh
   pkgs.git
   pkgs.htop
   pkgs.helix
