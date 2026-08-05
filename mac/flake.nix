@@ -95,6 +95,7 @@
             hostname = "spaceship";
             profile-packages-factory = { pkgs, pkgs-unstable, ... }: [
               pkgs.gh
+              pkgs.atproto-goat
               pkgs-unstable.docker-sbx
             ];
           };
